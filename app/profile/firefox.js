@@ -143,6 +143,82 @@ pref("app.update.notifyDuringDownload", false);
   pref("app.update.auto", false);
 #endif
 
+// MISC. MERCURY SETTINGS
+// Enable Do Not Track and GPC by default.
+pref("privacy.donottrackheader.enabled", true);
+pref("privacy.globalprivacycontrol.enabled", true);
+// Disable more telemetry
+pref("toolkit.telemetry.enabled", false);
+pref("toolkit.telemetry.pioneer-new-studies-available", false);
+// Disable Auto Update
+pref("app.update.auto", false);
+// Allow WebAudio to play automatically.
+pref("media.autoplay.block-webaudio", false);
+// Disable all new tab page stuff except for snippets.
+pref("browser.newtabpage.activity-stream.showSponsored", false);
+pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
+pref("browser.newtabpage.activity-stream.topSitesRows", 2);
+pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
+pref("browser.newtabpage.activity-stream.feeds.section.highlights", false);
+pref("browser.newtabpage.activity-stream.feeds.snippets", true);
+// Enable AutoScrolling and Smooth Scroll by default
+pref("general.autoScroll", true);
+pref("general.smoothScroll", true);
+// Force enable GPU accelerated compositing.
+pref("layers.acceleration.force-enabled", true);
+// Always show menu bar and view image info.
+// pref("ui.key.menuAccessKeyFocuses", false);
+pref("browser.menu.showViewImageInfo", true);
+// Disable overlay scrollbars on Linux.
+#if defined(XP_LINUX)
+  pref("widget.gtk.overlay-scrollbars.enabled", false);
+#endif
+// Enable AVIF
+pref("image.avif.enabled", true);
+// Enable JPEG-XL
+pref("image.jxl.enabled", true);
+// Enable Widevine automatically
+pref("media.eme.enabled", true);
+// Whether search engagement telemetry should be recorded.
+pref("browser.urlbar.searchEngagementTelemetry.enabled", false);
+// Make sure sites expecting Chromium or Firefox still work.
+pref("general.useragent.compatMode.firefox", true);
+// CustomizableUI state of the browser's user interface
+pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"home-button\",\"urlbar-container\",\"downloads-button\",\"developer-button\",\"fxa-toolbar-menu-button\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"import-button\",\"personal-bookmarks\"]},\"seen\":[\"developer-button\"],\"dirtyAreaCache\":[\"PersonalToolbar\",\"nav-bar\",\"toolbar-menubar\",\"TabsToolbar\"],\"currentVersion\":19,\"newElementCount\":0}");
+// pref("browser.uiCustomization.autoAdd", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"home-button\",\"urlbar-container\",\"downloads-button\",\"developer-button\",\"fxa-toolbar-menu-button\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"import-button\",\"personal-bookmarks\"]},\"seen\":[\"developer-button\"],\"dirtyAreaCache\":[\"PersonalToolbar\",\"nav-bar\",\"toolbar-menubar\",\"TabsToolbar\"],\"currentVersion\":19,\"newElementCount\":0}");
+
+// Betterfox Fastfox.js
+pref("nglayout.initialpaint.delay", 0); // default=5; used to be 250
+pref("nglayout.initialpaint.delay_in_oopif", 0); // default=5
+pref("content.notify.interval", 100000); // (.10s); default=120000 (.12s)
+pref("layout.css.grid-template-masonry-value.enabled", true);
+pref("dom.enable_web_task_scheduling", true);
+pref("layout.css.has-selector.enabled", true);
+pref("gfx.canvas.accelerated.cache-items", 4096); // default=2048; alt=8192
+pref("gfx.canvas.accelerated.cache-size", 512); // default=256; alt=1024
+pref("gfx.content.skia-font-cache-size", 20); // default=5; Chrome=20
+pref("media.memory_cache_max_size", 65536); // default=8192; AF=65536; alt=131072
+pref("media.cache_readahead_limit", 7200); // 120 min; default=60; stop reading ahead when our buffered data is this many seconds ahead of the current playback
+pref("media.cache_resume_threshold", 3600); // 60 min; default=30; when a network connection is suspended, don't resume it until the amount of buffered data falls below this threshold
+pref("image.mem.decode_bytes_at_a_time", 32768); // default=16384; alt=65536; chunk size for calls to the image decoders
+pref("network.buffer.cache.size", 262144); // 256 kb; default=32768 (32 kb)
+pref("network.buffer.cache.count", 128); // default=24
+pref("network.http.max-connections", 1800); // default=900
+pref("network.http.max-persistent-connections-per-server", 10); // default=6; download connections; anything above 10 is excessive
+pref("network.http.max-urgent-start-excessive-connections-per-host", 5); // default=3
+pref("network.websocket.max-connections", 400); // default=200
+pref("network.http.pacing.requests.enabled", false);
+pref("network.dnsCacheEntries", 10000); // default=400
+pref("network.dnsCacheExpiration", 86400); // keep entries for 1 day; alt=3600 (1 hour)
+pref("network.dns.max_high_priority_threads", 8); // default=5
+pref("network.ssl_tokens_cache_capacity", 20480); // default=2048; more TLS token caching (fast reconnects)
+pref("network.http.speculative-parallel-limit", 0);
+pref("network.dns.disablePrefetch", true);
+pref("network.prefetch-next", false);
+pref("network.predictor.enabled", false);
+pref("network.predictor.enable-prefetch", false);
+// END MISC MERCURY SETTINGS
+
 // If set to true, the Update Service will apply updates in the background
 // when it finishes downloading them.
 pref("app.update.staging.enabled", true);
@@ -436,6 +512,9 @@ pref("browser.urlbar.suggest.recentsearches",       true);
 pref("browser.urlbar.richSuggestions.featureGate", true);
 pref("browser.search.param.search_rich_suggestions", "fen");
 
+// Feature gate pref for weather suggestions in the urlbar.
+pref("browser.urlbar.weather.featureGate", false);
+
 // Enable clipboard suggestions in Nightly.
 #ifdef NIGHTLY_BUILD
 pref("browser.urlbar.clipboard.featureGate", true);
@@ -638,6 +717,10 @@ pref("browser.urlbar.suggest.addons", true);
 // mdn suggestions are turned on.
 pref("browser.urlbar.suggest.mdn", true);
 
+// If `browser.urlbar.yelp.featureGate` is true, this controls whether
+// Yelp suggestions are turned on.
+pref("browser.urlbar.suggest.yelp", false);
+
 // The minimum prefix length of addons keyword the user must type to trigger
 // the suggestion. 0 means the min length should be taken from Nimbus.
 pref("browser.urlbar.addons.minKeywordLength", 0);
@@ -706,9 +789,6 @@ pref("browser.download.clearHistoryOnDelete", 0);
 // (see browser.download.viewableInternally.enabledTypes)
 pref("browser.helperApps.showOpenOptionForPdfJS", true);
 pref("browser.helperApps.showOpenOptionForViewableInternally", true);
-
-// search engine removal URL
-pref("browser.search.searchEngineRemoval", "https://support.mozilla.org/1/firefox/%VERSION%/%OS%/%LOCALE%/search-engine-removal");
 
 // search engines URL
 pref("browser.search.searchEnginesURL",      "https://addons.mozilla.org/%LOCALE%/firefox/search-engines/");
@@ -904,6 +984,10 @@ pref("browser.tabs.tooltipsShowPidAndActiveness", true);
 pref("browser.tabs.tooltipsShowPidAndActiveness", false);
 #endif
 
+pref("browser.tabs.cardPreview.enabled", false);
+pref("browser.tabs.cardPreview.delayMs", 1000);
+pref("browser.tabs.cardPreview.showThumbnails", true);
+
 pref("browser.tabs.firefox-view", false);
 pref("browser.tabs.firefox-view-next", true);
 pref("browser.tabs.firefox-view-newIcon", true);
@@ -1014,6 +1098,11 @@ pref("privacy.clearOnShutdown.sessions",    true);
 pref("privacy.clearOnShutdown.offlineApps", false);
 pref("privacy.clearOnShutdown.siteSettings", false);
 pref("privacy.clearOnShutdown.openWindows", false);
+// Clear on shutdown prefs used in the new dialog
+pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", true);
+pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true);
+pref("privacy.clearOnShutdown_v2.cache", true);
+pref("privacy.clearOnShutdown_v2.siteSettings", false);
 
 pref("privacy.cpd.history",                 true);
 pref("privacy.cpd.formdata",                true);
@@ -1037,6 +1126,8 @@ pref("privacy.history.custom",              false);
 // 5 - Last 5 minutes
 // 6 - Last 24 hours
 pref("privacy.sanitize.timeSpan", 1);
+
+pref("privacy.sanitize.useOldClearHistoryDialog", true);
 
 pref("privacy.panicButton.enabled",         true);
 
@@ -1317,10 +1408,6 @@ pref("places.frecency.origins.alternative.featureGate", false);
 // selects "Forget About This Site".
 pref("places.forgetThisSite.clearByBaseDomain", true);
 
-#ifdef NIGHTLY_BUILD
-pref("places.experimental.useSingleQueueTransactionManager", true);
-#endif
-
 // Whether to warm up network connections for places: menus and places: toolbar.
 pref("browser.places.speculativeConnect.enabled", true);
 
@@ -1560,13 +1647,18 @@ pref("services.sync.prefs.sync.permissions.default.image", true);
 pref("services.sync.prefs.sync.pref.downloads.disable_button.edit_actions", true);
 pref("services.sync.prefs.sync.pref.privacy.disable_button.cookie_exceptions", true);
 pref("services.sync.prefs.sync.privacy.clearOnShutdown.cache", true);
+pref("services.sync.prefs.sync.privacy.clearOnShutdown_v2.cache", true);
 pref("services.sync.prefs.sync.privacy.clearOnShutdown.cookies", true);
+pref("services.sync.prefs.sync.privacy.clearOnShutdown_v2.cookiesAndStorage", true);
 pref("services.sync.prefs.sync.privacy.clearOnShutdown.downloads", true);
+pref("services.sync.prefs.sync.privacy.clearOnShutdown_v2.downloads", true);
 pref("services.sync.prefs.sync.privacy.clearOnShutdown.formdata", true);
 pref("services.sync.prefs.sync.privacy.clearOnShutdown.history", true);
+pref("services.sync.prefs.sync.privacy.clearOnShutdown_v2.historyFormDataAndDownloads", true);
 pref("services.sync.prefs.sync.privacy.clearOnShutdown.offlineApps", true);
 pref("services.sync.prefs.sync.privacy.clearOnShutdown.sessions", true);
 pref("services.sync.prefs.sync.privacy.clearOnShutdown.siteSettings", true);
+pref("services.sync.prefs.sync.privacy.clearOnShutdown_v2.siteSettings", true);
 pref("services.sync.prefs.sync.privacy.donottrackheader.enabled", true);
 pref("services.sync.prefs.sync.privacy.globalprivacycontrol.enabled", true);
 pref("services.sync.prefs.sync.privacy.sanitize.sanitizeOnShutdown", true);
@@ -1589,83 +1681,6 @@ pref("services.sync.prefs.sync.signon.management.page.breach-alerts.enabled", tr
 pref("services.sync.prefs.sync.signon.rememberSignons", true);
 pref("services.sync.prefs.sync.spellchecker.dictionary", true);
 pref("services.sync.prefs.sync.ui.osk.enabled", true);
-
-// MISC. MERCURY SETTINGS
-// Enable Do Not Track and GPC by default.
-pref("privacy.donottrackheader.enabled", true);
-pref("privacy.globalprivacycontrol.enabled", true);
-// Disable more telemetry
-pref("toolkit.telemetry.enabled", false);
-pref("toolkit.telemetry.pioneer-new-studies-available", false);
-// Disable Auto Update
-pref("app.update.auto", false);
-// Allow WebAudio to play automatically.
-pref("media.autoplay.block-webaudio", false);
-// Disable all new tab page stuff except for snippets.
-pref("browser.newtabpage.activity-stream.showSponsored", false);
-pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
-pref("browser.newtabpage.activity-stream.topSitesRows", 2);
-pref("browser.newtabpage.activity-stream.section.highlights.includePocket", false);
-pref("browser.newtabpage.activity-stream.feeds.section.highlights", false);
-pref("browser.newtabpage.activity-stream.feeds.snippets", true);
-// Enable AutoScrolling and Smooth Scroll by default
-pref("general.autoScroll", true);
-pref("general.smoothScroll", true);
-// Force enable GPU accelerated compositing.
-pref("layers.acceleration.force-enabled", true);
-// Always show menu bar and view image info.
-// pref("ui.key.menuAccessKeyFocuses", false);
-pref("browser.menu.showViewImageInfo", true);
-// Disable overlay scrollbars on Linux.
-#if defined(XP_LINUX)
-  pref("widget.gtk.overlay-scrollbars.enabled", false);
-#endif
-// Enable AVIF
-pref("image.avif.enabled", true);
-// Enable JPEG-XL
-pref("image.jxl.enabled", true);
-// Enable Widevine automatically
-pref("media.eme.enabled", true);
-// Whether search engagement telemetry should be recorded.
-pref("browser.urlbar.searchEngagementTelemetry.enabled", false);
-// Make sure sites expecting Chromium or Firefox still work.
-pref("general.useragent.compatMode.firefox", true);
-// CustomizableUI state of the browser's user interface
-pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"home-button\",\"urlbar-container\",\"downloads-button\",\"developer-button\",\"fxa-toolbar-menu-button\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"import-button\",\"personal-bookmarks\"]},\"seen\":[\"developer-button\"],\"dirtyAreaCache\":[\"PersonalToolbar\",\"nav-bar\",\"toolbar-menubar\",\"TabsToolbar\"],\"currentVersion\":19,\"newElementCount\":0}");
-// pref("browser.uiCustomization.autoAdd", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"home-button\",\"urlbar-container\",\"downloads-button\",\"developer-button\",\"fxa-toolbar-menu-button\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"import-button\",\"personal-bookmarks\"]},\"seen\":[\"developer-button\"],\"dirtyAreaCache\":[\"PersonalToolbar\",\"nav-bar\",\"toolbar-menubar\",\"TabsToolbar\"],\"currentVersion\":19,\"newElementCount\":0}");
-
-// Betterfox Fastfox.js
-pref("nglayout.initialpaint.delay", 0); // default=5; used to be 250
-pref("nglayout.initialpaint.delay_in_oopif", 0); // default=5
-pref("content.notify.interval", 100000); // (.10s); default=120000 (.12s)
-pref("layout.css.grid-template-masonry-value.enabled", true);
-pref("dom.enable_web_task_scheduling", true);
-pref("layout.css.has-selector.enabled", true);
-pref("gfx.canvas.accelerated.cache-items", 4096); // default=2048; alt=8192
-pref("gfx.canvas.accelerated.cache-size", 512); // default=256; alt=1024
-pref("gfx.content.skia-font-cache-size", 20); // default=5; Chrome=20
-pref("media.memory_cache_max_size", 65536); // default=8192; AF=65536; alt=131072
-pref("media.cache_readahead_limit", 7200); // 120 min; default=60; stop reading ahead when our buffered data is this many seconds ahead of the current playback
-pref("media.cache_resume_threshold", 3600); // 60 min; default=30; when a network connection is suspended, don't resume it until the amount of buffered data falls below this threshold
-pref("image.mem.decode_bytes_at_a_time", 32768); // default=16384; alt=65536; chunk size for calls to the image decoders
-pref("network.buffer.cache.size", 262144); // 256 kb; default=32768 (32 kb)
-pref("network.buffer.cache.count", 128); // default=24
-pref("network.http.max-connections", 1800); // default=900
-pref("network.http.max-persistent-connections-per-server", 10); // default=6; download connections; anything above 10 is excessive
-pref("network.http.max-urgent-start-excessive-connections-per-host", 5); // default=3
-pref("network.websocket.max-connections", 400); // default=200
-pref("network.http.pacing.requests.enabled", false);
-pref("network.dnsCacheEntries", 10000); // default=400
-pref("network.dnsCacheExpiration", 86400); // keep entries for 1 day; alt=3600 (1 hour)
-pref("network.dns.max_high_priority_threads", 8); // default=5
-pref("network.ssl_tokens_cache_capacity", 20480); // default=2048; more TLS token caching (fast reconnects)
-pref("network.http.speculative-parallel-limit", 0);
-pref("network.dns.disablePrefetch", true);
-pref("network.prefetch-next", false);
-pref("network.predictor.enabled", false);
-pref("network.predictor.enable-prefetch", false);
-
-// END MISC MERCURY SETTINGS
 
 // A preference which, if false, means sync will only apply incoming preference
 // changes if there's already a local services.sync.prefs.sync.* control pref.
@@ -1776,6 +1791,7 @@ pref("browser.newtabpage.activity-stream.discoverystream.spoc-topsites-positions
 // but Contile positions are a 1-based index, so we end up adding 1 to these before using them.
 pref("browser.newtabpage.activity-stream.discoverystream.contile-topsites-positions", "0,1");
 pref("browser.newtabpage.activity-stream.discoverystream.widget-positions", "");
+
 pref("browser.newtabpage.activity-stream.discoverystream.spocs-endpoint", "");
 pref("browser.newtabpage.activity-stream.discoverystream.spocs-endpoint-query", "");
 pref("browser.newtabpage.activity-stream.discoverystream.sponsored-collections.enabled", false);
@@ -1916,6 +1932,9 @@ pref("identity.fxaccounts.remote.root", "https://accounts.firefox.com/");
 // The value of the context query parameter passed in fxa requests.
 pref("identity.fxaccounts.contextParam", "fx_desktop_v3");
 
+// Whether to use the oauth flow for desktop or not
+pref("identity.fxaccounts.oauth.enabled", false);
+
 // The remote URL of the FxA Profile Server
 pref("identity.fxaccounts.remote.profile.uri", "https://profile.accounts.firefox.com/v1");
 
@@ -2023,10 +2042,6 @@ pref("toolkit.telemetry.newProfilePing.enabled", false);
 pref("toolkit.telemetry.updatePing.enabled", false);
 // Enables sending 'bhr' pings when the browser hangs.
 pref("toolkit.telemetry.bhrPing.enabled", false);
-
-// Ping Centre Telemetry settings.
-pref("browser.ping-centre.telemetry", true);
-pref("browser.ping-centre.log", false);
 
 // Enable GMP support in the addon manager.
 pref("media.gmp-provider.enabled", true);
@@ -2147,8 +2162,7 @@ pref("browser.contentblocking.report.show_mobile_app", true);
 pref("browser.send_to_device_locales", "de,en-GB,en-US,es-AR,es-CL,es-ES,es-MX,fr,id,pl,pt-BR,ru,zh-TW");
 
 // Avoid advertising in certain regions. Comma separated string of two letter ISO 3166-1 country codes.
-// We're currently blocking all of Ukraine (ua), but would prefer to block just Crimea (ua-43). Currently, the Mozilla Location Service APIs used by Region.sys.mjs only exposes the country, not the subdivision.
-pref("browser.vpn_promo.disallowed_regions", "ae,by,cn,cu,iq,ir,kp,om,ru,sd,sy,tm,tr,ua");
+pref("browser.vpn_promo.disallowed_regions", "ae,by,cn,cu,iq,ir,kp,om,ru,sd,sy,tm,tr");
 
 // Default to enabling VPN promo messages to be shown when specified and allowed
 pref("browser.vpn_promo.enabled", true);
@@ -2248,9 +2262,6 @@ pref("privacy.fingerprintingProtection.pbmode", true);
 // leaks.
 pref("privacy.exposeContentTitleInWindow", true);
 pref("privacy.exposeContentTitleInWindow.pbm", true);
-
-// Start the browser in e10s mode
-pref("browser.tabs.remote.autostart", true);
 
 // Run media transport in a separate process?
 pref("media.peerconnection.mtransport_process", true);
@@ -2432,6 +2443,9 @@ pref("extensions.screenshots.disabled", false);
 
 // Preference that determines whether Screenshots is opened as a dedicated browser component
 pref("screenshots.browser.component.enabled", false);
+
+// Preference that determines what button to focus
+pref("screenshots.browser.component.last-saved-method", "download");
 
 // DoH Rollout: whether to clear the mode value at shutdown.
 pref("doh-rollout.clearModeOnShutdown", false);
@@ -2968,6 +2982,9 @@ pref("browser.pdfjs.feature-tour", "{\"screen\":\"\",\"complete\":false}");
   pref("cookiebanners.ui.desktop.enabled", false);
 #endif
 
+// When true, shows a one-time feature callout for cookie banner blocking.
+pref("cookiebanners.ui.desktop.showCallout", false);
+
 // Controls which variant of the cookie banner CFR the user is presented with.
 pref("cookiebanners.ui.desktop.cfrVariant", 0);
 
@@ -3027,11 +3044,6 @@ pref("ui.new-webcompat-reporter.reason-dropdown", 0);
 // Whether the reset private browsing panel should ask for confirmation before
 // performing the clear action.
 pref("browser.privatebrowsing.resetPBM.showConfirmationDialog", true);
-
-// bug 1858545: Temporary pref to enable a staged rollout of macOS attribution Telemetry
-#ifdef XP_MACOSX
-  pref("browser.attribution.macos.enabled", false);
-#endif
 
 // the preferences related to the Nimbus experiment, to activate and deactivate
 // the the entire rollout or deactivate only the OS prompt (see: bug 1864216)
