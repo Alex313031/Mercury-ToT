@@ -730,7 +730,7 @@ pref("browser.urlbar.pocket.featureGate", false);
 
 // If `browser.urlbar.pocket.featureGate` is true, this controls whether Pocket
 // suggestions are turned on.
-pref("browser.urlbar.suggest.pocket", true);
+pref("browser.urlbar.suggest.pocket", false);
 
 pref("browser.altClickSave", true);
 
@@ -1591,7 +1591,7 @@ pref("services.sync.prefs.sync-seen.browser.newtabpage.activity-stream.section.h
 pref("services.sync.prefs.sync.browser.newtabpage.activity-stream.section.highlights.includeVisited", true);
 pref("services.sync.prefs.sync.browser.newtabpage.activity-stream.section.highlights.includeBookmarks", true);
 pref("services.sync.prefs.sync.browser.newtabpage.activity-stream.section.highlights.includeDownloads", true);
-pref("services.sync.prefs.sync.browser.newtabpage.activity-stream.section.highlights.includePocket", true);
+pref("services.sync.prefs.sync.browser.newtabpage.activity-stream.section.highlights.includePocket", false);
 // Some linux distributions disable just pocket by default.
 pref("services.sync.prefs.sync-seen.browser.newtabpage.activity-stream.section.highlights.includePocket", false);
 pref("services.sync.prefs.sync.browser.newtabpage.activity-stream.section.highlights.rows", true);
