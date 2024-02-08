@@ -617,7 +617,7 @@ pref("browser.urlbar.maxCharsForSearchSuggestions", 100);
 pref("browser.urlbar.trimURLs", false);
 
 #ifdef NIGHTLY_BUILD
-pref("browser.urlbar.trimHttps", true);
+pref("browser.urlbar.trimHttps", false);
 #else
 pref("browser.urlbar.trimHttps", false);
 #endif
@@ -632,7 +632,11 @@ pref("browser.urlbar.switchTabs.adoptIntoActiveWindow", false);
 
 // Controls whether searching for open tabs returns tabs from any container
 // or only from the current container.
+#ifdef NIGHTLY_BUILD
+pref("browser.urlbar.switchTabs.searchAllContainers", true);
+#else
 pref("browser.urlbar.switchTabs.searchAllContainers", false);
+#endif
 
 // Whether addresses and search results typed into the address bar
 // should be opened in new tabs by default.
@@ -858,6 +862,20 @@ pref("browser.shopping.experience2023.survey.hasSeen", false);
 // Number of PDP visits used to display shopping survey
 pref("browser.shopping.experience2023.survey.pdpVisits", 0);
 
+// Enables the auto-open feature for the shopping sidebar,
+// including new callouts and settings UI changes
+// (this is just the feature flag).
+pref("browser.shopping.experience2023.autoOpen.enabled", false);
+
+// Opens the shopping sidebar automatically when viewing a PDP.
+pref("browser.shopping.experience2023.autoOpen.userEnabled", true);
+
+// Number of times the sidebar has been closed in a session
+pref("browser.shopping.experience2023.sidebarClosedCount", 0);
+
+// When conditions are met, shows a prompt on the shopping sidebar asking users if they want to disable auto-open behavior
+pref("browser.shopping.experience2023.showKeepSidebarClosedMessage", true);
+
 // Enables the display of the Mozilla VPN banner in private browsing windows
 pref("browser.privatebrowsing.vpnpromourl", "https://vpn.mozilla.org/?utm_source=firefox-browser&utm_medium=firefox-%CHANNEL%-browser&utm_campaign=private-browsing-vpn-link");
 
@@ -893,6 +911,10 @@ pref("permissions.desktop-notification.postPrompt.enabled", true);
 pref("permissions.desktop-notification.notNow.enabled", false);
 
 pref("permissions.fullscreen.allowed", false);
+
+// Force external link opens into the default user context ID instead of guessing
+// the most appropriate one based on the URL (https://bugzilla.mozilla.org/show_bug.cgi?id=1874599#c8)
+pref("browser.link.force_default_user_context_id_for_external_opens", false);
 
 // handle links targeting new windows
 // 1=current window/tab, 2=new window, 3=new tab in most recent window
@@ -1127,7 +1149,13 @@ pref("privacy.history.custom",              false);
 // 6 - Last 24 hours
 pref("privacy.sanitize.timeSpan", 1);
 
+#if defined(NIGHTLY_BUILD)
+pref("privacy.sanitize.useOldClearHistoryDialog", false);
+#else
 pref("privacy.sanitize.useOldClearHistoryDialog", true);
+#endif
+
+pref("privacy.sanitize.sanitizeOnShutdown.hasMigratedToNewPrefs", false);
 
 pref("privacy.panicButton.enabled",         true);
 
@@ -1248,12 +1276,6 @@ pref("accessibility.typeaheadfind", false);
 pref("accessibility.typeaheadfind.timeout", 5000);
 pref("accessibility.typeaheadfind.linksonly", false);
 pref("accessibility.typeaheadfind.flashBar", 1);
-
-#if defined(_ARM64_) && defined(XP_WIN)
-  pref("plugin.default.state", 0);
-#else
-  pref("plugin.default.state", 1);
-#endif
 
 // Toggling Search bar on and off in about:preferences
 pref("browser.preferences.search", true);
@@ -2254,6 +2276,12 @@ pref("privacy.webrtc.sharedTabWarning", false);
 // before navigating to the actual meeting room page. Doesn't survive tab close.
 pref("privacy.webrtc.deviceGracePeriodTimeoutMs", 3600000);
 
+// Bug 1857254 - MacOS 14 displays two (microphone/camera/screen share) icons in the menu bar
+// This pref can be used to hide the firefox camera icon on macos 14 and above to avoid
+// duplicating the macos camera icon. We show the icon by default, users can choose to flip
+// the pref to hide the icons
+pref("privacy.webrtc.showIndicatorsOnMacos14AndAbove", true);
+
 // Enable Fingerprinting Protection in private windows..
 pref("privacy.fingerprintingProtection.pbmode", true);
 
@@ -2536,7 +2564,7 @@ pref("browser.toolbars.bookmarks.showInPrivateBrowsing", false);
 pref("identity.fxaccounts.toolbar.enabled", true);
 pref("identity.fxaccounts.toolbar.accessed", false);
 pref("identity.fxaccounts.toolbar.defaultVisible", false);
-pref("identity.fxaccounts.toolbar.pxiToolbarEnabled", false);
+pref("identity.fxaccounts.toolbar.pxiToolbarEnabled", true);
 
 // Check bundled omni JARs for corruption.
 pref("corroborator.enabled", true);
@@ -2626,8 +2654,9 @@ pref("devtools.gridinspector.maxHighlighters", 3);
 // Whether or not simplified highlighters should be used when
 // prefers-reduced-motion is enabled.
 pref("devtools.inspector.simple-highlighters-reduced-motion", false);
-// Display notice about Enter key behavior in Rules view.
-pref("devtools.inspector.showRulesViewEnterKeyNotice", true);
+// Wheter or not Enter on inplace editor in the Rules view moves focus and activates
+// next inplace editor.
+pref("devtools.inspector.rule-view.focusNextOnEnter", true);
 
 // Whether or not the box model panel is opened in the layout view
 pref("devtools.layout.boxmodel.opened", true);
@@ -3020,11 +3049,7 @@ pref("cookiebanners.ui.desktop.cfrVariant", 0);
   pref("dom.security.credentialmanagement.identity.enabled", true);
 #endif
 
-#if defined(NIGHTLY_BUILD)
 pref("ui.new-webcompat-reporter.enabled", true);
-#else
-pref("ui.new-webcompat-reporter.enabled", false);
-#endif
 
 #if defined(EARLY_BETA_OR_EARLIER)
 pref("ui.new-webcompat-reporter.send-more-info-link", true);
@@ -3033,7 +3058,9 @@ pref("ui.new-webcompat-reporter.send-more-info-link", false);
 #endif
 
 # 0 = disabled, 1 = reason optional, 2 = reason required.
-pref("ui.new-webcompat-reporter.reason-dropdown", 0);
+pref("ui.new-webcompat-reporter.reason-dropdown", 2);
+
+pref("ui.new-webcompat-reporter.reason-dropdown.randomized", true);
 
 // Reset Private Browsing Session feature
 #if defined(NIGHTLY_BUILD)
